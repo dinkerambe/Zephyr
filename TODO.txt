@@ -1,0 +1,23 @@
+=================================TO DO FILE==============================
+
+
+SUGGESTION:
+
+PRIORITY|	MESSAGE|
+
+HIGH	|	Make all IDs in SQL BIGINT UNSIGNED. Need a workaround for Java
+		Look at UserBean get, set, make methods related to UserID and UserID_str
+
+HIGH 	|	When creatin DAOs make sure to have static final String for the 
+		column names in the table.  If at least 1 is NOT NULL each talbe name 
+		public
+
+
+TO DO:
+
+PRIORITY|	MESSAGE|
+
+HIGH	|	Test all UserDAOs and SQLCMD functions to see if they work.
+		check catalina.out log to see if any errors were reported through
+		the standard output stream.
+		catalina.out located at ---/tomcat/logs/
