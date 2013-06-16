@@ -7,7 +7,7 @@
 <title>Zephyr</title>
 
 <!--STYLESHEETS-->
-<link href="/loginjsp/Login/css/style.css" rel="stylesheet" type="text/css" />
+<link href="./css/style.css" rel="stylesheet" type="text/css" />
 
 
 
