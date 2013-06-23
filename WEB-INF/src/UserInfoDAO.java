@@ -84,6 +84,18 @@ public class UserInfoDAO{
 		return result;
 	}
 
+	public static void updateField(List<ValuePairs> oldParams, List<ValuePairs> newParams){
+		try{
+			SQLCMD.initConnection();
+			SQLCMD.updateSelection(USER_INFO_TABLE, oldParams, newParams);
+		}catch(Exception e){
+			System.out.println("USER_INFO_DAO: update failed");
+		}
+		finally{
+			SQLCMD.closeConnection();
+		}
+
+	}
 	public static void initUserInfoTable(){
 		try{
 			SQLCMD.initConnection();

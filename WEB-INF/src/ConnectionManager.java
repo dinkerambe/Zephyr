@@ -1,6 +1,8 @@
 import java.sql.*;
 import java.util.*;
-
+//import java.net.URL;
+//import java.net.URLClassLoader;
+//import java.io.File;
 
 public class ConnectionManager {
 
@@ -17,8 +19,14 @@ public class ConnectionManager {
 		try
 		{
 			String url = "jdbc:mysql:" + dataSource; 
-			Class.forName("org.gjt.mm.mysql.Driver");
 
+			//File root = new File("/usr/share/tomcat7/lib/mysql-connector-java-5.1.25/src/");
+			//URLClassLoader classLoader  = null;
+			//try{
+			//classLoader = URLClassLoader.newInstance(new URL[] { root.toURI().toURL() });
+			//}catch(Exception ex){System.out.println(ex.getMessage());}
+			//Class.forName("org.gjt.mm.mysql.Driver");//, true, classLoader);
+			Class.forName("com.mysql.jdbc.Driver");
 			try
 			{            	
 				con = DriverManager.getConnection(url, connectionName, connectionPassword);
@@ -30,7 +38,6 @@ public class ConnectionManager {
 				ex.printStackTrace();
 			}
 		}
-
 		catch(ClassNotFoundException e)
 		{
 			System.out.println(e);

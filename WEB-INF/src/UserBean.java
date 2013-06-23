@@ -19,6 +19,7 @@ public class UserBean {
 		String password){
 
 		this.userID = userID;
+		setUserID_str();
 		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -74,6 +75,7 @@ public class UserBean {
 	}
 	public void setUserID(long userID){
 		this.userID = userID;
+		setUserID_str();
 	}
 	
 	//solution to long not being able to store 64bit unsigned ints

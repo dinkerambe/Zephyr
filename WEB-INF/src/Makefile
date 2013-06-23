@@ -13,6 +13,7 @@ all: $(classes)
 
 clean :
 	rm *.class
+	rm $(OUT)/*.class
 
 %.class : %.java
 	$(JAVAC) $(JFLAGS) $<
