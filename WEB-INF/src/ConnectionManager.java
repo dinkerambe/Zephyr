@@ -26,21 +26,23 @@ public class ConnectionManager {
 			//classLoader = URLClassLoader.newInstance(new URL[] { root.toURI().toURL() });
 			//}catch(Exception ex){System.out.println(ex.getMessage());}
 			//Class.forName("org.gjt.mm.mysql.Driver");//, true, classLoader);
+
 			Class.forName("com.mysql.jdbc.Driver");
 			try
 			{            	
+
 				con = DriverManager.getConnection(url, connectionName, connectionPassword);
 
 			}
 
 			catch (SQLException ex)
 			{
-				ex.printStackTrace();
+				System.out.println(ex.getMessage());
 			}
 		}
 		catch(ClassNotFoundException e)
 		{
-			System.out.println(e);
+			System.out.println(e.getMessage());
 		}
 
 		return con;

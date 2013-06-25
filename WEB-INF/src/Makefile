@@ -6,14 +6,24 @@ JFLAGS = -g -cp .:./classes:$(CP1):$(CP2) -d ../classes
 SRC = src
 OUT = classes
 
-sources = $(wildcard *.java)
+#sources = $(wildcard *.java)
+sources= Tester.java \
+	UserDAO.java \
+	SQLCMD.java \
+	UserBean.java \
+	ConnectionManager.java \
+	RegServlet.java\
+	UserInfoBean.java \
+	UserInfoDAO.java \
+	ValuePairs.java \
+
+
 classes = $(sources:.java=.class)
 
 all: $(classes)
 
 clean :
-	rm *.class
-	rm $(OUT)/*.class
+	rm ../$(OUT)/*.class
 
 %.class : %.java
 	$(JAVAC) $(JFLAGS) $<

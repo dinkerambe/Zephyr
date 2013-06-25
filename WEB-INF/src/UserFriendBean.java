@@ -1,6 +1,5 @@
 import java.math.BigInteger;
 
-
 public class UserFriendBean{
 
 	private long userID;
