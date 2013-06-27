@@ -19,6 +19,7 @@ public class RegServlet extends HttpServlet {
 
 			UserDAO.initUserTable();
 			UserInfoDAO.initUserInfoTable();
+			UserFriendDAO.initTable();
 			UserBean user = new UserBean();
 			user.setFirstName(request.getParameter("reg-name"));
 			user.setLastName(request.getParameter("reg-name"));
