@@ -1,4 +1,6 @@
-
+import java.util.*;
+import java.sql.ResultSet;
+import java.sql.Connection;
 public class UserFriendDAO{
 	static ResultSet rs;
 	static Connection con;
@@ -6,7 +8,7 @@ public class UserFriendDAO{
 	final static String UID1_DB = "user1_id";
 	final static String UID2_DB = "user2_id";
 	final static String USER_TABLE= "tomcat_users";
-	final static String USER_FRIEND_TABLE = "user_friends"
+	final static String USER_FRIEND_TABLE = "user_friends";
 
 	public static void initTable(){
 		try{
@@ -14,8 +16,8 @@ public class UserFriendDAO{
 			List<String> fields = new ArrayList<String>();
 			fields.add(UID1_DB + " BIGINT UNSIGNED NOT NULL REFERENCES " + USER_TABLE +"(" + UID_DB + ")");
 			fields.add(UID2_DB + " BIGINT UNSIGNED NOT NULL REFERENCES " + USER_TABLE +"(" + UID_DB + ")");
-			fields.add("CONSTRAINT CheckOneWay CHECK (" + UID1_DB + " < " + UID2_DB ")");
-			fields.add("CONSTRAINT PK_1_2 PRIMARY KEY (" + UID1_DB + ", " + UID2_DB ")");
+			fields.add("CONSTRAINT CheckOneWay CHECK (" + UID1_DB + " < " + UID2_DB + ")");
+			fields.add("CONSTRAINT PK_1_2 PRIMARY KEY (" + UID1_DB + ", " + UID2_DB + ")");
 			fields.add("CONSTRAINT UQ_2_1 UNIQUE (" + UID2_DB + ", " + UID1_DB + ")");
 			SQLCMD.createTable(USER_FRIEND_TABLE, fields);
 
@@ -28,7 +30,7 @@ public class UserFriendDAO{
 
 
 	public static boolean isFriend(UserFriendBean bean){
-		boolean result;
+		boolean result = false;
 		try{
 			SQLCMD.initConnection();
 			long user1 = bean.getUserID();
@@ -41,7 +43,7 @@ public class UserFriendDAO{
 			fields.add(UID1_DB);
 			fields.add(UID2_DB);
 
-			List<String values = new ArrayList<String>();
+			List<String> values = new ArrayList<String>();
 			if(user1 < user2){
 				values.add(user1_str);
 				values.add(user2_str);
@@ -73,7 +75,7 @@ public class UserFriendDAO{
 			fields.add(UID1_DB);
 			fields.add(UID2_DB);
 
-			List<String values = new ArrayList<String>();
+			List<String> values = new ArrayList<String>();
 			if(user1 < user2){
 				values.add(user1_str);
 				values.add(user2_str);
@@ -111,7 +113,7 @@ public class UserFriendDAO{
 			fields.add(UID1_DB);
 			fields.add(UID2_DB);
 
-			List<String values = new ArrayList<String>();
+			List<String> values = new ArrayList<String>();
 			if(user1 < user2){
 				values.add(user1_str);
 				values.add(user2_str);
