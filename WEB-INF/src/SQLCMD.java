@@ -173,7 +173,7 @@ public class SQLCMD{
 					
 			}
 			
-			rs = stmt.execute(deleteStatement);
+			stmt.execute(deleteStatement);
 		} catch(Exception ex){
 			System.out.println("Delete failed: SQL Delete input error(s)");
 		}
