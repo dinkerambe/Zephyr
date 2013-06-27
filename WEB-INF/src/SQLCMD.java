@@ -158,7 +158,26 @@ public class SQLCMD{
 		}
 		return rs;
 	}
+	public static void delete(String table, List<String> fields, List<String> values){
+		try{
+			String deleteStatement 
+				= "DELETE FROM " + table + " WHERE ";
+			for(int i =0, n = fields.size(); i < n; i++){
+					if(i==n-1)
+						deleteStatement += fields.get(i) 
+						+ " = " + "'" +  values.get(i) + "';";
+					else
+						deleteStatement += fields.get(i) 
+						+ " = " + "'" +  values.get(i) + "' AND ";
 
+					
+			}
+			
+			rs = stmt.execute(deleteStatement);
+		} catch(Exception ex){
+			System.out.println("Delete failed: SQL Delete input error(s)");
+		}
+	}
 	public static void updateSelection(String table, List<ValuePairs> oldParams,
 		List<ValuePairs> newParams){
 		
