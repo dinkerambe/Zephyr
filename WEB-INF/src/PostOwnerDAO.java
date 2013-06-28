@@ -28,64 +28,62 @@ public class PostOwnerDAO{
 		}
 	}
 
+	//CONTEST TO OTHER
 	public static List<long> grabContestPosts(long contestID){
-		List<long> result = new ArrayList<long>();	
-		try{
-			SQLCMD.initConnection();
-			rs = SQLCMD.select(POST_OWNERS_TABLE, CONTEST_DB, contestID);
-			while(rs.next()){
-				result.add(rs.getLong(POST_DB));
-			}
-		}catch(Exception e){System.out.println("POST_OWNER_DAO: grabContestPosts failed");}
-		finally{
-			SQLCMD.closeConnection();
-		}
-		return result;
+		return grabManyID(CONTEST_DB, POST_DB, contestID);
 	}
 
-	public static List<long> grabUserPosts(long userID){
-		List<long> result = new ArrayList<long>();	
-		try{
-			SQLCMD.initConnection();
-			rs = SQLCMD.select(POST_OWNERS_TABLE, UID_DB, userID);
-			while(rs.next()){
-				result.add(rs.getLong(POST_DB));
-			}
-		}catch(Exception e){System.out.println("POST_OWNER_DAO: grabUserPosts failed");}
-		finally{
-			SQLCMD.closeConnection();
-		}
-		return result;
+	public static List<long> grabContestUsers(long userID){
+		return grabManyID(CONTEST_DB, UID_DB, contestID);
 	}
 
+	//POST TO OTHER
 	public static long grabPostContest(long postID){
-		long result = -1;
-		try{
-			SQLCMD.initConnection();
-			rs = SQLCMD.select(POST_OWNERS_TABLE, POST_DB, postID);
-			result.add(rs.getLong(CONTEST_DB));
-		}catch(Exception e){System.out.println("POST_OWNER_DAO: grabPostContest failed");}
-		finally{
-			SQLCMD.closeConnection();
-		}
-		return result;
+		return grabOneID(POST_DB, CONTEST_DB, postID);
+	}
+
+	public static long grabPostUser(long postID){
+		return grabOneID(POST_DB, UID_DB, postID);
+	}
+	
+	//USER TO OTHER
+	public static List<long> grabUserPosts(long userID){
+		return grabManyID(UID_DB, POST_DB, userID);
 	}
 
 	public static List<long> grabUserContests(long userID){
+		return grabManyID(UID_DB, CONTEST_DB, userID);
+	}
+	
+	//BASE METHODS
+	private static List<long> grabManyID(String subject, String object, long ID){
 		List<long> result = new ArrayList<long>();	
 		try{
 			SQLCMD.initConnection();
-			rs = SQLCMD.select(POST_OWNERS_TABLE, UID_DB, userID);
+			rs = SQLCMD.select(POST_OWNERS_TABLE, subject, ID);
 			while(rs.next()){
-				result.add(rs.getLong(CONTEST_DB));
+				result.add(rs.getLong(object));
 			}
-		}catch(Exception e){System.out.println("POST_OWNER_DAO: grabUserContests failed");}
+		}catch(Exception e){System.out.println("POST_OWNER_DAO: grab" +subject + object + " failed");}
 		finally{
 			SQLCMD.closeConnection();
 		}
 		return result;
 	}
 
+	private static long grabOneID(String subject, String object, long ID){
+		long result = -1;
+		try{
+			SQLCMD.initConnection();
+			rs = SQLCMD.select(POST_OWNERS_TABLE, subject, ID);
+			result = rs.getLong(object);
+		}catch(Exception e){System.out.println("POST_OWNER_DAO: grab" + subject + object + " failed");}
+		finally{
+			SQLCMD.closeConnection();
+		}
+		return result;
+
+	}
 
 
 }
