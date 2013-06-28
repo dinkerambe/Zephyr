@@ -13,17 +13,23 @@ import java.util.List;
 
 
 public class PostDAO {
-	
+	final static String UID_DB = "user_id";
+	final static String POST_DB = "post_id";
+	final static String USER_TABLE = "tomcat_users";
+	final static String POST_TABLE = "posts";
+	final static String CONTEST_TABLE = "contests";
+	final static String CONTEST_DB = "contest_id";
+
 	public static void initDatabase()
 	{
 		//Post Table
 		List<String> postFields = new ArrayList<String>();
 		String str;
-		str = "'postID' BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY";
+		str = POST_DB + " BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY";
 		postFields.add(str);
-		str = "'userID' BIGINT NOT NULL";
+		str = UID_DB + " BIGINT NOT NULL REFERENCES " + USER_TABLE + "(" + UID_DB + ")";
 		postFields.add(str);
-		str = "'contestID' BIGINT  NOT NULL";
+		str = CONTEST_DB + " BIGINT NOT NULL REFERENCES " + CONTEST_TABLE + "(" + CONTEST_DB + ")";
 		postFields.add(str);
 		str = "'votes' int(64) NOT NULL";
 		postFields.add(str);
@@ -45,6 +51,7 @@ public class PostDAO {
 		//Voter List Table
 
 		//Make new Class for this and fix the variable names
+		
 		List<String> voterFields = new ArrayList<String>();
 		str = "'postID' BIGINT NOT NULL PRIMARY KEY";
 		postFields.add(str);
