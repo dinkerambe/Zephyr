@@ -3,6 +3,9 @@ import java.sql.ResultSet;
 import java.sql.Connection;
 
 public class PostOwnerDAO{
+	static ResultSet rs;
+	static Connection con;
+
 	final static String UID_DB = "user_id";
 	final static String CONTEST_DB = "contest_id";
 	final static String POST_DB = "post_id";
@@ -10,7 +13,7 @@ public class PostOwnerDAO{
 	final static String USER_TABLE = "tomcat_users";
 	final static String CONTEST_TABLE = "contests";
 	final static String POST_OWNERS_TABLE= "post_owners";
-	final static String POST_TABLE = "posts;
+	final static String POST_TABLE = "posts";
 
 	public static void initTable(){
 		try{
@@ -29,11 +32,11 @@ public class PostOwnerDAO{
 	}
 
 	//CONTEST TO OTHER
-	public static List<long> grabContestPosts(long contestID){
+	public static List<Long> grabContestPosts(long contestID){
 		return grabManyID(CONTEST_DB, POST_DB, contestID);
 	}
 
-	public static List<long> grabContestUsers(long userID){
+	public static List<Long> grabContestUsers(long contestID){
 		return grabManyID(CONTEST_DB, UID_DB, contestID);
 	}
 
@@ -47,22 +50,22 @@ public class PostOwnerDAO{
 	}
 	
 	//USER TO OTHER
-	public static List<long> grabUserPosts(long userID){
+	public static List<Long> grabUserPosts(long userID){
 		return grabManyID(UID_DB, POST_DB, userID);
 	}
 
-	public static List<long> grabUserContests(long userID){
+	public static List<Long> grabUserContests(long userID){
 		return grabManyID(UID_DB, CONTEST_DB, userID);
 	}
 	
 	//BASE METHODS
-	private static List<long> grabManyID(String subject, String object, long ID){
-		List<long> result = new ArrayList<long>();	
+	private static List<Long> grabManyID(String subject, String object, long ID){
+		List<Long> result = new ArrayList<Long>();	
 		try{
 			SQLCMD.initConnection();
-			rs = SQLCMD.select(POST_OWNERS_TABLE, subject, ID);
+			rs = SQLCMD.select(POST_OWNERS_TABLE, subject, "" + ID);
 			while(rs.next()){
-				result.add(rs.getLong(object));
+				result.add(new Long(rs.getLong(object)));
 			}
 		}catch(Exception e){System.out.println("POST_OWNER_DAO: grab" +subject + object + " failed");}
 		finally{
@@ -75,7 +78,7 @@ public class PostOwnerDAO{
 		long result = -1;
 		try{
 			SQLCMD.initConnection();
-			rs = SQLCMD.select(POST_OWNERS_TABLE, subject, ID);
+			rs = SQLCMD.select(POST_OWNERS_TABLE, subject, "" + ID);
 			result = rs.getLong(object);
 		}catch(Exception e){System.out.println("POST_OWNER_DAO: grab" + subject + object + " failed");}
 		finally{
