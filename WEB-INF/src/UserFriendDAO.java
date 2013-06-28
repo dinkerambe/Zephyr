@@ -1,6 +1,7 @@
 import java.util.*;
 import java.sql.ResultSet;
 import java.sql.Connection;
+
 public class UserFriendDAO{
 	static ResultSet rs;
 	static Connection con;
@@ -16,9 +17,6 @@ public class UserFriendDAO{
 			List<String> fields = new ArrayList<String>();
 			fields.add(UID1_DB + " BIGINT UNSIGNED NOT NULL REFERENCES " + USER_TABLE +"(" + UID_DB + ")");
 			fields.add(UID2_DB + " BIGINT UNSIGNED NOT NULL REFERENCES " + USER_TABLE +"(" + UID_DB + ")");
-			fields.add("CONSTRAINT CheckOneWay CHECK (" + UID1_DB + " < " + UID2_DB + ")");
-			fields.add("CONSTRAINT PK_1_2 PRIMARY KEY (" + UID1_DB + ", " + UID2_DB + ")");
-			fields.add("CONSTRAINT UQ_2_1 UNIQUE (" + UID2_DB + ", " + UID1_DB + ")");
 			SQLCMD.createTable(USER_FRIEND_TABLE, fields);
 
 		}catch(Exception e){
@@ -44,14 +42,8 @@ public class UserFriendDAO{
 			fields.add(UID2_DB);
 
 			List<String> values = new ArrayList<String>();
-			if(user1 < user2){
-				values.add(user1_str);
-				values.add(user2_str);
-			}
-			else{
-				values.add(user2_str);
-				values.add(user1_str);
-			}
+			values.add(user1_str);
+			values.add(user2_str);
 
 			rs = SQLCMD.select(USER_FRIEND_TABLE, fields, values);
 			result = rs.next();
@@ -76,14 +68,8 @@ public class UserFriendDAO{
 			fields.add(UID2_DB);
 
 			List<String> values = new ArrayList<String>();
-			if(user1 < user2){
-				values.add(user1_str);
-				values.add(user2_str);
-			}
-			else{
-				values.add(user2_str);
-				values.add(user1_str);
-			}
+			values.add(user1_str);
+			values.add(user2_str);
 
 			SQLCMD.insertField(USER_FRIEND_TABLE, fields, values);
 		}catch(Exception e){System.out.println("USER_FRIEND_DAO insert failed");}
@@ -114,14 +100,8 @@ public class UserFriendDAO{
 			fields.add(UID2_DB);
 
 			List<String> values = new ArrayList<String>();
-			if(user1 < user2){
-				values.add(user1_str);
-				values.add(user2_str);
-			}
-			else{
-				values.add(user2_str);
-				values.add(user1_str);
-			}
+			values.add(user1_str);
+			values.add(user2_str);
 
 			SQLCMD.delete(USER_FRIEND_TABLE, fields, values);
 		}catch(Exception e){System.out.println("USER_FRIEND_DAO removeFriend failed");}
@@ -137,9 +117,21 @@ public class UserFriendDAO{
 
 		return check;
 	}
+	
+	public static ResultSet grabAllFriends(String userID){
+		
+		try{
+			SQLCMD.initConnection();
+			rs = SQLCMD.select(USER_FRIEND_TABLE, UID1_DB, userID);
+		}catch(Exception e){System.out.println("USER_FRIEND_DAO grabAll failed");}
+		finally{
+			SQLCMD.closeConnection();
+		}
+		return rs;
 
-			
+	}
+
+}		
 	
 
 
-}
