@@ -19,11 +19,11 @@ public class PostDAO {
 		//Post Table
 		List<String> postFields = new ArrayList<String>();
 		String str;
-		str = "'postID' int(64) NOT NULL AUTO_INCREMENT PRIMARY KEY";
+		str = "'postID' BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY";
 		postFields.add(str);
-		str = "'userID' int(64) NOT NULL";
+		str = "'userID' BIGINT NOT NULL";
 		postFields.add(str);
-		str = "'contestID' int(64) NOT NULL";
+		str = "'contestID' BIGINT  NOT NULL";
 		postFields.add(str);
 		str = "'votes' int(64) NOT NULL";
 		postFields.add(str);
@@ -43,10 +43,12 @@ public class PostDAO {
 		postFields.add(str);
 		
 		//Voter List Table
+
+		//Make new Class for this and fix the variable names
 		List<String> voterFields = new ArrayList<String>();
-		str = "'postID' int(64) NOT NULL PRIMARY KEY";
+		str = "'postID' BIGINT NOT NULL PRIMARY KEY";
 		postFields.add(str);
-		str = "'voterID' int(64) NOT NULL";
+		str = "'voterID' BIGINT NOT NULL";
 		postFields.add(str);
 		try{
 			SQLCMD.initConnection();
