@@ -16,7 +16,8 @@ sources= Tester.java \
 	UserInfoBean.java \
 	UserInfoDAO.java \
 	ValuePairs.java \
-
+	PostBean.java \
+	PostDAO.java \
 
 classes = $(sources:.java=.class)
 
