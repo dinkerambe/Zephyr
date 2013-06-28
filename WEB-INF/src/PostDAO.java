@@ -51,16 +51,16 @@ public class PostDAO {
 		//Voter List Table
 
 		//Make new Class for this and fix the variable names
-		
+	/*	
 		List<String> voterFields = new ArrayList<String>();
 		str = "'postID' BIGINT NOT NULL PRIMARY KEY";
 		postFields.add(str);
 		str = "'voterID' BIGINT NOT NULL";
-		postFields.add(str);
+		postFields.add(str);*/
 		try{
 			SQLCMD.initConnection();
 			SQLCMD.createTable("Post", postFields);
-			SQLCMD.createTable("Voters", voterFields);
+			//SQLCMD.createTable("Voters", voterFields);
 		} catch (Exception ex) {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();

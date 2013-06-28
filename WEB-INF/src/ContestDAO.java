@@ -45,15 +45,15 @@ public class ContestDAO {
 		str = "'endTime' timestamp NOT NULL";
 		contestFields.add(str);
 		
-		List<String> contestPostFields = new ArrayList<String>();
+		/*List<String> contestPostFields = new ArrayList<String>();
 		str = "'contestID' int(64) NOT NULL PRIMARY KEY";
 		contestPostFields.add(str);
 		str = "'postID' int(64) NOT NULL";
-		contestPostFields.add(str);
+		contestPostFields.add(str);*/
 		try{
 			SQLCMD.initConnection();
 			SQLCMD.createTable("Contest", contestFields);
-			SQLCMD.createTable("ContestPosts", contestPostFields);
+			//SQLCMD.createTable("ContestPosts", contestPostFields);
 		} catch (Exception ex) {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
