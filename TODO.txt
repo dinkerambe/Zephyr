@@ -21,3 +21,6 @@ HIGH	|	Test all UserDAOs and SQLCMD functions to see if they work.
 		check catalina.out log to see if any errors were reported through
 		the standard output stream.
 		catalina.out located at ---/tomcat/logs/
+
+HIGH	|	PostVoterDAO.java
+		
