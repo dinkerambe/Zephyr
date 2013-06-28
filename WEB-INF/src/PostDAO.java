@@ -59,7 +59,7 @@ public class PostDAO {
 		postFields.add(str);*/
 		try{
 			SQLCMD.initConnection();
-			SQLCMD.createTable("Post", postFields);
+			SQLCMD.createTable(POST_TABLE, postFields);
 			//SQLCMD.createTable("Voters", voterFields);
 		} catch (Exception ex) {
 			// TODO Auto-generated catch block
@@ -75,10 +75,10 @@ public class PostDAO {
 		ResultSet rs;
 		try {
 			SQLCMD.initConnection();
-			rs = SQLCMD.select("Post", "postID", ""+postID);
-			post.setPostID(rs.getLong("postID"));
-			post.setUserID(rs.getLong("userID"));
-			post.setContestID(rs.getLong("contestID"));
+			rs = SQLCMD.select(POST_TABLE, POST_DB, ""+postID);
+			post.setPostID(rs.getLong(POST_DB));
+			post.setUserID(rs.getLong(UID_DB));
+			post.setContestID(rs.getLong(CONTEST_DB));
 			post.setVotes(rs.getLong("votes"));
 			post.setVotedForPostID(rs.getLong("votedForPostID"));
 			post.setTimestamp(rs.getTimestamp("timestamp"));
@@ -99,12 +99,13 @@ public class PostDAO {
 				post.setMediaType(Media_Type.VIDEO);
 				post.setVideoURL(rs.getString("videoURL"));
 			}
+	//FIX NEXT LINE
 			rs = SQLCMD.select("Voters", "postID", ""+postID);
 			if (!rs.isBeforeFirst()) 
 			{    
 				 System.out.println("No data"); 
 			}
-			else if(SQLCMD.select("Contest", "contestID", ""+post.contestID()).getBoolean("isDone"))
+			else if(SQLCMD.select(CONTEST_TABLE, CONTEST_DB, ""+post.contestID()).getBoolean("isDone"))
 			{
 				ArrayList<Long> list = new ArrayList<Long>();
 				int votes = 0;
@@ -131,7 +132,7 @@ public class PostDAO {
 		ResultSet rs;
 		try {
 			SQLCMD.initConnection();
-			rs = SQLCMD.select("Post", "postID", ""+post.postID());
+			rs = SQLCMD.select(POST_TABLE, POST_DB, ""+post.postID());
 			rs.updateLong("votes", post.votes());
 			rs.updateLong("votedForPostID", post.votedForPostID());
 			rs.updateTimestamp("timestamp", post.timestamp());
@@ -144,23 +145,6 @@ public class PostDAO {
 			SQLCMD.closeConnection();
 		}
 	}
-	public static void addVoter(long postID, long voterID)
-	{
-		ArrayList<String> fields = new ArrayList<String>();
-		ArrayList<String> values = new ArrayList<String>();
-		fields.add("postID");
-		fields.add("voterID");
-		values.add(""+postID);
-		values.add(""+voterID);
-		try {
-			SQLCMD.initConnection();
-			SQLCMD.insertField("Voters", fields, values);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally{
-			SQLCMD.closeConnection();
-		}
-	}
+	
 
 }

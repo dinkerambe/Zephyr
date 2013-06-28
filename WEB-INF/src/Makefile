@@ -7,7 +7,7 @@ SRC = src
 OUT = classes
 
 #sources = $(wildcard *.java)
-sources= Tester.java \
+sources = Tester.java \
 	UserDAO.java \
 	SQLCMD.java \
 	UserBean.java \
@@ -18,6 +18,8 @@ sources= Tester.java \
 	ValuePairs.java \
 	PostBean.java \
 	PostDAO.java \
+	PostOwnerDAO.java \
+	PostVotesDAO.java \
 
 classes = $(sources:.java=.class)
 
