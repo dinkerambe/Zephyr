@@ -23,7 +23,7 @@ public class ContestDAO {
 	final static String POST_TABLE = "post";
 
 
-	public static void initDatabase()
+	public static void initTable()
 	{
 		List<String> contestFields = new ArrayList<String>();
 		String str;

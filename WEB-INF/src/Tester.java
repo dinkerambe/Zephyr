@@ -5,5 +5,6 @@ public class Tester{
 		UserDAO.initUserTable();
 		UserInfoDAO.initUserInfoTable();
 		UserFriendDAO.initTable();
+		ContestDAO.initTable();
 	}	
 }
