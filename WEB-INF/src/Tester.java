@@ -7,5 +7,8 @@ public class Tester{
 		UserFriendDAO.initTable();
 		ContestDAO.initTable();
 		PostDAO.initTable();
+
+		PostOwnerDAO.initTable();
+		PostVotesDAO.initTable();
 	}	
 }
