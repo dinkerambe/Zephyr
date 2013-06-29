@@ -11,10 +11,6 @@ import java.sql.Blob;
 import java.sql.Timestamp;
 import java.util.*;
 
-enum Media_Type
-{
-	COMMENT, PICTURE, VIDEO;
-}
 public class PostBean {
  
 	private long postID, userID, votes, contestID, votedForPostID;
@@ -22,7 +18,7 @@ public class PostBean {
 	private boolean isVideo, isText, isImage, isWinner;
 	private ArrayList<Long> voters = new ArrayList<Long>();
 	private Blob picture;
-	private String comment, videoURL; //???
+	private String comment, videoURL, mediaType; //???
 	private Media_Type mediaType;
 	
 	//Setters
@@ -34,7 +30,7 @@ public class PostBean {
 	public void setComment(String comment){this.comment = comment;}
 	public void setPicture(Blob picture){this.picture = picture;}
 	public void setVideoURL(String url){this.videoURL = url;}
-	public void setMediaType(Media_Type mt){this.mediaType = mt;}
+	public void setMediaType(String mt){this.mediaType = mt;}
 	public void setTimestamp(Timestamp t){this.timestamp = t;}
 	public void setIsWinner(boolean b){this.isWinner = b;}
 	public void setVoters(ArrayList<Long> list)
@@ -54,7 +50,7 @@ public class PostBean {
 	public String comment(){return this.comment;}
 	public Blob picture(){return this.picture;}
 	public String videoURL(){return this.videoURL;}
-	public Media_Type mediaType(){return this.mediaType;}
+	public String mediaType(){return this.mediaType;}
 	public Timestamp timestamp(){return this.timestamp;}
 	public boolean isWinner(){return this.isWinner;}
 	public ArrayList<Long> voters(){return this.voters;}

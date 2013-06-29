@@ -86,6 +86,7 @@ public class ContestDAO {
 			contest.setIsGlobal(rs.getBoolean("isGlobal"));
 			contest.setIsLocal(rs.getBoolean("isLocal"));
 			contest.setIsDone(rs.getBoolean("isDone"));
+<<<<<<< HEAD
 			String mt = rs.getString("mediaType");
 			if(mt.equals("COMMENT"))
 			{
@@ -100,6 +101,10 @@ public class ContestDAO {
 				contest.setMediaType(Media_Type.VIDEO);
 			}
 			/*implemented elsewhere....we need to work this out
+=======
+			contest.setMediaType(rs.getString("mediaType"));
+		
+>>>>>>> cc2661f756464ae9e47c24e44594e16db99df7e7
 			rs = SQLCMD.select("ContestPosts", "contestID", ""+contestID);
 			if (!rs.isBeforeFirst()) 
 			{    
