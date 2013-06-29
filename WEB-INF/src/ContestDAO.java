@@ -76,19 +76,8 @@ public class ContestDAO {
 			contest.setIsGlobal(rs.getBoolean("isGlobal"));
 			contest.setIsLocal(rs.getBoolean("isLocal"));
 			contest.setIsDone(rs.getBoolean("isDone"));
-			String mt = rs.getString("mediaType");
-			if(mt.equals("COMMENT"))
-			{
-				contest.setMediaType(Media_Type.COMMENT);
-			}
-			else if(mt.equals("PICTURE"))
-			{
-				contest.setMediaType(Media_Type.PICTURE);
-			}
-			else if(mt.equals("VIDEO")) 
-			{
-				contest.setMediaType(Media_Type.VIDEO);
-			}
+			contest.setMediaType(rs.getString("mediaType"));
+		
 			rs = SQLCMD.select("ContestPosts", "contestID", ""+contestID);
 			if (!rs.isBeforeFirst()) 
 			{    

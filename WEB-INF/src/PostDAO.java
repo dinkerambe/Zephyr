@@ -86,17 +86,17 @@ public class PostDAO {
 			String mt = rs.getString("mediaType");
 			if(mt.equals("COMMENT"))
 			{
-				post.setMediaType(Media_Type.COMMENT);
+				post.setMediaType(mt);
 				post.setComment(rs.getString("comment"));
 			}
 			else if(mt.equals("PICTURE"))
 			{
-				post.setMediaType(Media_Type.PICTURE);
+				post.setMediaType(mt);
 				post.setPicture(rs.getBlob("picture"));
 			}
 			else if(mt.equals("VIDEO")) 
 			{
-				post.setMediaType(Media_Type.VIDEO);
+				post.setMediaType(mt);
 				post.setVideoURL(rs.getString("videoURL"));
 			}
 	//FIX NEXT LINE

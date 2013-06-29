@@ -12,7 +12,7 @@ public class ContestBean {
 
 	private long contestID, numberOfContestants, creatorID, runningTime;
 	private String title, description, rules;
-	private Media_Type mediaType;
+	private String mediaType;
 	private boolean isGlobal, isLocal, isDone;
 	private Timestamp startTime, endTime;
 	private ArrayList<PostBean> posts = new ArrayList<PostBean>();
@@ -29,7 +29,7 @@ public class ContestBean {
 	public void setIsGlobal(boolean b){this.isGlobal = b;}
 	public void setIsLocal(boolean b){this.isLocal = b;}
 	public void setIsDone(boolean b){this.isDone = b;}
-	public void setMediaType(Media_Type mt){this.mediaType = mt;}
+	public void setMediaType(String mt){this.mediaType = mt;}
 	public void setPosts(ArrayList<PostBean> list)
 	{
 		for(int j=0; j<list.size(); j++)
@@ -52,7 +52,7 @@ public class ContestBean {
 	public boolean isGlobal(){return this.isGlobal;}
 	public boolean isLocal(){return this.isLocal;}
 	public boolean isDone(){return this.isDone;}
-	public Media_Type mediaType(){return this.mediaType;}
+	public String mediaType(){return this.mediaType;}
 	public ArrayList<PostBean> posts(){return this.posts;}
 	
 	public void findWinner()
