@@ -25,11 +25,11 @@ public class PostDAO {
 		//Post Table
 		List<String> postFields = new ArrayList<String>();
 		String str;
-		str = POST_DB + " BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY";
+		str = POST_DB + " BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY";
 		postFields.add(str);
-		str = UID_DB + " BIGINT NOT NULL REFERENCES " + USER_TABLE + "(" + UID_DB + ")";
+		str = UID_DB + " BIGINT UNSIGNED NOT NULL REFERENCES " + USER_TABLE + "(" + UID_DB + ")";
 		postFields.add(str);
-		str = CONTEST_DB + " BIGINT NOT NULL REFERENCES " + CONTEST_TABLE + "(" + CONTEST_DB + ")";
+		str = CONTEST_DB + " BIGINT UNSIGNED NOT NULL REFERENCES " + CONTEST_TABLE + "(" + CONTEST_DB + ")";
 		postFields.add(str);
 		str = "'votes' int(64) NOT NULL";
 		postFields.add(str);

@@ -63,14 +63,4 @@ public class UserFriendBean{
 	public void setLinked(boolean linked){
 		this.linked = linked;
 	}
-
-
-
-
-
-
-
-
-
-
 }
