@@ -14,13 +14,22 @@ import java.util.List;
 
 public class ContestDAO {
 
+	final static String UID_DB = "user_id";
+	final static String CONTEST_DB = "contest_id";
+	final static String POST_DB = "post_id";
+
+	final static String USER_TABLE = "tomcat_users";
+	final static String CONTEST_TABLE = "contests";
+	final static String POST_TABLE = "post";
+
+
 	public static void initDatabase()
 	{
 		List<String> contestFields = new ArrayList<String>();
 		String str;
-		str = "'contestID' int(64) NOT NULL AUTO_INCREMENT PRIMARY KEY";
+		str = CONTEST_DB + " BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY";
 		contestFields.add(str);
-		str = "'creatorID' int(64) NOT NULL";
+		str = UID_DB + " BIGINT UNSIGNED NOT NULL REFERENCES " + USER_TABLE + "(" + UID_DB + ")";
 		contestFields.add(str);
 		str = "'numberOfContestants' int(64) NOT NULL";
 		contestFields.add(str);
@@ -45,14 +54,15 @@ public class ContestDAO {
 		str = "'endTime' timestamp NOT NULL";
 		contestFields.add(str);
 		
-		/*List<String> contestPostFields = new ArrayList<String>();
+		/*implemented elsewhere we need to fix this
+		List<String> contestPostFields = new ArrayList<String>();
 		str = "'contestID' int(64) NOT NULL PRIMARY KEY";
 		contestPostFields.add(str);
 		str = "'postID' int(64) NOT NULL";
 		contestPostFields.add(str);*/
 		try{
 			SQLCMD.initConnection();
-			SQLCMD.createTable("Contest", contestFields);
+			SQLCMD.createTable(CONTEST_TABLE, contestFields);
 			//SQLCMD.createTable("ContestPosts", contestPostFields);
 		} catch (Exception ex) {
 			// TODO Auto-generated catch block
@@ -61,14 +71,14 @@ public class ContestDAO {
 			SQLCMD.closeConnection();
 		}
 	}
-	public static ContestBean contest(int contestID)
+	public static ContestBean grabContest(int contestID)
 	{
 		ContestBean contest = new ContestBean();
 		ResultSet rs;
 		try {
 			SQLCMD.initConnection();
-			rs = SQLCMD.select("Contest", "contestID", ""+contestID);
-			contest.setContestID(rs.getLong("contestID"));
+			rs = SQLCMD.select(CONTEST_TABLE, CONTEST_DB, ""+contestID);
+			contest.setContestID(rs.getLong(CONTEST_DB));
 			contest.setNumberOfContestants(rs.getLong("numberOfContestants"));
 			contest.setRunningTime(rs.getLong("runningTime"));
 			contest.setStartTime(rs.getTimestamp("startTime"));
@@ -89,6 +99,7 @@ public class ContestDAO {
 			{
 				contest.setMediaType(Media_Type.VIDEO);
 			}
+			/*implemented elsewhere....we need to work this out
 			rs = SQLCMD.select("ContestPosts", "contestID", ""+contestID);
 			if (!rs.isBeforeFirst()) 
 			{    
@@ -106,6 +117,7 @@ public class ContestDAO {
 				contest.setPosts(list);
 				contest.setNumberOfContestants(numberOfContestants);
 			}
+			*/
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -120,7 +132,7 @@ public class ContestDAO {
 		ResultSet rs;
 		try {
 			SQLCMD.initConnection();
-			rs = SQLCMD.select("Contest", "contestID", ""+contest.contestID());
+			rs = SQLCMD.select(CONTEST_TABLE, CONTEST_DB, ""+contest.contestID());
 			rs.updateLong("numberOfContestants", contest.numberOfContestants());
 			rs.updateBoolean("isDone", contest.isDone());
 			rs.updateRow();
@@ -131,6 +143,7 @@ public class ContestDAO {
 			SQLCMD.closeConnection();
 		}
 	}
+	/*implemented elsewhere we need to update this
 	public static void addPost(long contestID, long postID)
 	{
 		ArrayList<String> fields = new ArrayList<String>();
@@ -149,4 +162,5 @@ public class ContestDAO {
 			SQLCMD.closeConnection();
 		}
 	}
+	*/
 }
