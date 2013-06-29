@@ -109,7 +109,7 @@ public class UserDAO
 	/*
 	 *Init the User Table
 	*/
-	public static void initUserTable(){
+	public static void initTable(){
 		try{
 			SQLCMD.initConnection();
 			

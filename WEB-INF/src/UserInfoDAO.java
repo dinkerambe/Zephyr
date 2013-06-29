@@ -96,7 +96,7 @@ public class UserInfoDAO{
 		}
 
 	}
-	public static void initUserInfoTable(){
+	public static void initTable(){
 		try{
 			SQLCMD.initConnection();
 
