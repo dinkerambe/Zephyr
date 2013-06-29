@@ -17,7 +17,7 @@ public class UserFriendDAO{
 			List<String> fields = new ArrayList<String>();
 			fields.add(UID1_DB + " BIGINT UNSIGNED NOT NULL REFERENCES " + USER_TABLE +"(" + UID_DB + ")");
 			fields.add(UID2_DB + " BIGINT UNSIGNED NOT NULL REFERENCES " + USER_TABLE +"(" + UID_DB + ")");
-			fields.add("CHECK (" + UID1_DB " != " UID2_DB +")");	
+			fields.add("CHECK (" + UID1_DB + " != " + UID2_DB +")");	
 			SQLCMD.createTable(USER_FRIEND_TABLE, fields);
 
 		}catch(Exception e){

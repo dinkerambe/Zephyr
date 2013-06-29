@@ -6,8 +6,8 @@ JFLAGS = -g -cp .:./classes:$(CP1):$(CP2) -d ../classes
 SRC = src
 OUT = classes
 
-#sources = $(wildcard *.java)
-sources = Tester.java \
+sources = $(wildcard *.java)
+#sources = Tester.java \
 	UserDAO.java \
 	SQLCMD.java \
 	UserBean.java \

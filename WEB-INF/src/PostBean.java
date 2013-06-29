@@ -19,7 +19,6 @@ public class PostBean {
 	private ArrayList<Long> voters = new ArrayList<Long>();
 	private Blob picture;
 	private String comment, videoURL, mediaType; //???
-	private Media_Type mediaType;
 	
 	//Setters
 	public void setPostID(long postID){this.postID = postID;}
