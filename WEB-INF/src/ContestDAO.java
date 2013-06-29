@@ -31,34 +31,34 @@ public class ContestDAO {
 		contestFields.add(str);
 		str = UID_DB + " BIGINT UNSIGNED NOT NULL REFERENCES " + USER_TABLE + "(" + UID_DB + ")";
 		contestFields.add(str);
-		str = "'numberOfContestants' int(64) NOT NULL";
+		str = "numberOfContestants int(64) NOT NULL";
 		contestFields.add(str);
-		str = "'runningTime' int(64) NOT NULL";
+		str = "runningTime int(64) NOT NULL";
 		contestFields.add(str);
-		str = "'title' varchar(255) NOT NULL";
+		str = "title varchar(255) NOT NULL";
 		contestFields.add(str);
-		str = "'description' varchar(255) NOT NULL";
+		str = "description varchar(255) NOT NULL";
 		contestFields.add(str);
-		str = "'rules' varchar(255) NOT NULL";
+		str = "rules varchar(255) NOT NULL";
 		contestFields.add(str);
-		str = "'mediaType' varchar(255) NOT NULL";
+		str = "mediaType varchar(255) NOT NULL";
 		contestFields.add(str);
-		str = "'isGlobal' boolean NOT NULL";
+		str = "isGlobal boolean NOT NULL";
 		contestFields.add(str);
-		str = "'isLocal' boolean NOT NULL";
+		str = "isLocal boolean NOT NULL";
 		contestFields.add(str);
-		str = "'isDone' boolean NOT NULL";
+		str = "isDone boolean NOT NULL";
 		contestFields.add(str);
-		str = "'startTime' timestamp NOT NULL";
+		str = "startTime timestamp NOT NULL";
 		contestFields.add(str);
-		str = "'endTime' timestamp NOT NULL";
+		str = "endTime timestamp NOT NULL";
 		contestFields.add(str);
 		
 		/*implemented elsewhere we need to fix this
 		List<String> contestPostFields = new ArrayList<String>();
-		str = "'contestID' int(64) NOT NULL PRIMARY KEY";
+		str = "contestID int(64) NOT NULL PRIMARY KEY";
 		contestPostFields.add(str);
-		str = "'postID' int(64) NOT NULL";
+		str = "postID int(64) NOT NULL";
 		contestPostFields.add(str);*/
 		try{
 			SQLCMD.initConnection();

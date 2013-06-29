@@ -31,21 +31,21 @@ public class PostDAO {
 		postFields.add(str);
 		str = CONTEST_DB + " BIGINT UNSIGNED NOT NULL REFERENCES " + CONTEST_TABLE + "(" + CONTEST_DB + ")";
 		postFields.add(str);
-		str = "'votes' int(64) NOT NULL";
+		str = "votes int(64) NOT NULL";
 		postFields.add(str);
-		str = "'votedForPostID' int(64) NOT NULL";
+		str = "votedForPostID int(64) NOT NULL";
 		postFields.add(str);
-		str = "'mediaType' varchar(255) NOT NULL";
+		str = "mediaType varchar(255) NOT NULL";
 		postFields.add(str);
-		str = "'picture' BLOB";
+		str = "picture BLOB";
 		postFields.add(str);
-		str = "'comment' varchar(255)";
+		str = "comment varchar(255)";
 		postFields.add(str);
-		str = "'videoURL' varchar(255)";
+		str = "videoURL varchar(255)";
 		postFields.add(str);
-		str = "'timestamp' timestamp NOT NULL";
+		str = "timestamp timestamp NOT NULL";
 		postFields.add(str);
-		str = "'isWinner' boolean NOT NULL";
+		str = "isWinner boolean NOT NULL";
 		postFields.add(str);
 		
 		//Voter List Table
