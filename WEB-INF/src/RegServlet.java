@@ -18,8 +18,8 @@ public class RegServlet extends HttpServlet {
 		{	    
 
 			//Temp Testing for inits
-			UserDAO.initUserTable();
-			UserInfoDAO.initUserInfoTable();
+			UserDAO.initTable();
+			UserInfoDAO.initTable();
 			UserFriendDAO.initTable();
 			ContestDAO.initTable();
 			PostDAO.initTable();
