@@ -20,7 +20,7 @@ public class PostDAO {
 	final static String CONTEST_TABLE = "contests";
 	final static String CONTEST_DB = "contest_id";
 
-	public static void initDatabase()
+	public static void initTable()
 	{
 		//Post Table
 		List<String> postFields = new ArrayList<String>();
